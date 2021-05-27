@@ -6,8 +6,8 @@ let map; //Objekt mapy
 let geometryCurrentPosition; //Objekt geometrie – zobrazení aktuální polohy
 let geometryCurrentPositionPrecision; //Objekt geometrie – zobrazení přesnosti polohy
 
+//vlastnosti červeného kroužku s aktuální polohou
 const optionsCurrentPosition = {
-  //vlastnosti červeného kroužku s aktuální polohou
   color: "red",
   opacity: 0.5,
   outlineColor: "red",
@@ -15,10 +15,10 @@ const optionsCurrentPosition = {
   outlineWidth: 1,
 };
 
-const currentPositionSize = 2; //průměr kroužku označujícího aktuální pozici
+const currentPositionSize = 5; //průměr kroužku označujícího aktuální pozici
 
+//vlastnosti modrého kruhu označujícího přesnost
 const optionsCurrentPositionPrecision = {
-  //vlastnosti modrého kruhu označujícího přesnost
   color: "blue",
   opacity: 0.1,
   outlineColor: "blue",
@@ -92,7 +92,7 @@ export default () => {
 
   const gpsChange = (position) => {
     map.setCenter(coordsFromPosition(position), true);
-    geometryCurrentPositionPrecision.setCoords([coordsFromPosition(position), currentPositionSize]);
+    geometryCurrentPosition.setCoords([coordsFromPosition(position), currentPositionSize]);
     geometryCurrentPositionPrecision.setCoords(circleCoordsFromPosition(position));
   };
 

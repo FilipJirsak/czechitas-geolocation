@@ -4,6 +4,13 @@ import GPSSingleShot from "./components/GPSSingleShot";
 import GPSContinuous from "./components/GPSContinuous";
 import "./style.css";
 
+const queryParams = new URLSearchParams();
+queryParams.append("cht", "qr");
+queryParams.append("chs", "150x150");
+queryParams.append("chl", window.location);
+queryParams.append("chld", "H|0");
+const qrURL = "http://chart.apis.google.com/chart?" + queryParams.toString();
+
 const App = () => (
   <div className="container">
     <section>
@@ -15,7 +22,7 @@ const App = () => (
       <GPSContinuous />
     </section>
     <div className="qr">
-      <img src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=https%3A//jirsak.org&chld=H|0" />
+      <img src={qrURL} />
     </div>
   </div>
 );

@@ -7,18 +7,23 @@ let geometryCurrentPosition; //Objekt geometrie – zobrazení aktuální polohy
 let geometryCurrentPositionPrecision; //Objekt geometrie – zobrazení přesnosti polohy
 
 const optionsCurrentPosition = {
+  //vlastnosti červeného kroužku s aktuální polohou
   color: "red",
   opacity: 0.5,
   outlineColor: "red",
   outlineOpacity: 1,
   outlineWidth: 1,
 };
+
+const currentPositionSize = 2; //průměr kroužku označujícího aktuální pozici
+
 const optionsCurrentPositionPrecision = {
+  //vlastnosti modrého kruhu označujícího přesnost
   color: "blue",
   opacity: 0.1,
   outlineColor: "blue",
   outlineOpacity: 0.5,
-  outlineWidth: 3,
+  outlineWidth: 1,
 };
 
 const equator = 6378000 * 2 * Math.PI; /* delka rovniku (m) */
@@ -68,7 +73,7 @@ export default () => {
       map.addLayer(geometryLayer);
       geometryLayer.enable();
 
-      geometryCurrentPosition = new SMap.Geometry(SMap.GEOMETRY_CIRCLE, null, [center, 7], optionsCurrentPosition);
+      geometryCurrentPosition = new SMap.Geometry(SMap.GEOMETRY_CIRCLE, null, [center, currentPositionSize], optionsCurrentPosition);
       geometryCurrentPositionPrecision = new SMap.Geometry(SMap.GEOMETRY_CIRCLE, null, circleCoordsFromPosition(position), optionsCurrentPositionPrecision);
       geometryLayer.addGeometry(geometryCurrentPosition);
       geometryLayer.addGeometry(geometryCurrentPositionPrecision);
@@ -87,6 +92,7 @@ export default () => {
 
   const gpsChange = (position) => {
     map.setCenter(coordsFromPosition(position), true);
+    geometryCurrentPositionPrecision.setCoords([coordsFromPosition(position), currentPositionSize]);
     geometryCurrentPositionPrecision.setCoords(circleCoordsFromPosition(position));
   };
 

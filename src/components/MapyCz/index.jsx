@@ -28,7 +28,7 @@ const coordsFromPosition = (position) => {
 };
 
 const circleCoordsFromPosition = (position) => {
-  if (!position.accuracy) {
+  if (!position.coords.accuracy) {
     return null;
   }
 
@@ -36,7 +36,7 @@ const circleCoordsFromPosition = (position) => {
   const lat = position.coords.latitude;
   const yrad = (Math.PI * lat) / 180; // zemepisna sirka v radianech
   const line = equator * Math.cos(yrad); // delka rovnobezky (m) na ktere lezi stred kruznice
-  const angle = (360 * position.accuracy) / line; // o tento uhel se po rovnobezce posuneme
+  const angle = (360 * position.coords.accuracy) / line; // o tento uhel se po rovnobezce posuneme
   return [SMap.Coords.fromWGS84(lon, lat), SMap.Coords.fromWGS84(lon + angle, lat)];
 };
 

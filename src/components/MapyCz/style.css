@@ -1,0 +1,15 @@
+.error {
+  color: red;
+}
+
+.map {
+  width: 600px;
+  height: 300px;
+}
+
+@media screen and (max-width: 640px) {
+  .map {
+    width: 100vw;
+    height: 100vw;
+  }
+}

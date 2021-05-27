@@ -2,6 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import GPSSingleShot from "./components/GPSSingleShot";
 import GPSContinuous from "./components/GPSContinuous";
+import MapyCz from "./components/MapyCz";
 import "./style.css";
 
 const queryParams = new URLSearchParams();
@@ -20,6 +21,10 @@ const App = () => (
     <section>
       <h1>Průběžné sledování pozice</h1>
       <GPSContinuous />
+    </section>
+    <section>
+      <h1>Zobrazení na Mapy.cz</h1>
+      <MapyCz />
     </section>
     <h1>QR kód adresy tohoto webu</h1>
     <div className="qr">

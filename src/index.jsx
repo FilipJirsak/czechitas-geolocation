@@ -6,7 +6,7 @@ import "./style.css";
 
 const queryParams = new URLSearchParams();
 queryParams.append("cht", "qr");
-queryParams.append("chs", "150x150");
+queryParams.append("chs", "250x250");
 queryParams.append("chl", window.location);
 queryParams.append("chld", "H|0");
 const qrURL = "http://chart.apis.google.com/chart?" + queryParams.toString();
@@ -21,6 +21,7 @@ const App = () => (
       <h1>Průběžné sledování pozice</h1>
       <GPSContinuous />
     </section>
+    <h1>QR kód adresy tohoto webu</h1>
     <div className="qr">
       <img src={qrURL} />
     </div>
